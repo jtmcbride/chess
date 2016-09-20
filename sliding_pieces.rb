@@ -37,7 +37,7 @@ class Bishop < SlidingPiece
   end
 
   def to_s
-    "B"
+    super " #{@sym} "
   end
 end
 
@@ -52,7 +52,7 @@ class Rook < SlidingPiece
   end
 
   def to_s
-    "R"
+    super " #{@sym} "
   end
 end
 
@@ -67,6 +67,6 @@ class Queen < SlidingPiece
   end
 
   def to_s
-    "Q"
+    super(" #{@sym} ")
   end
 end

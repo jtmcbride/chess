@@ -15,13 +15,14 @@ class Display
       row_string = ""
       row.each_with_index do |piece, j|
         if [i,j] == highlight_pos
-          row_string << " #{piece.to_s} ".yellow
+          row_string << "#{piece.to_s}".red
         elsif [i,j] == @cursor.cursor_pos
-          row_string << " #{piece.to_s} ".red
+          row_string << "#{piece.to_s}".colorize(:background => :red)
         elsif piece == NullPiece.instance
-          row_string << " #{piece.to_s} "
+          background = (i + j) % 2 == 0 ? :black : :green
+          row_string << "   ".colorize(:background => background)
         else
-          row_string << " #{piece.to_s} ".colorize(piece.color)
+          row_string << "#{piece.to_s}"
         end
       end
       puts row_string

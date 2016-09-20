@@ -17,8 +17,9 @@ class Piece
     end
   end
 
-  def to_s
-    "P"
+  def to_s(string)
+    background = (self.pos[0] + self.pos[1]) % 2 == 0 ? :black : :green
+    string.colorize(:color => @color, :background => background)
   end
 
   def add_vector(vec1,vec2)
@@ -44,6 +45,6 @@ class NullPiece
   include Singleton
 
   def to_s
-    "_"
+    " _ "
   end
 end

@@ -33,7 +33,7 @@ class King < SteppingPiece
   end
 
   def to_s
-    "K"
+    super " #{@sym} "
   end
 end
 
@@ -50,6 +50,6 @@ class Knight < SteppingPiece
   end
 
   def to_s
-    "N"
+    super " #{@sym} "
   end
 end

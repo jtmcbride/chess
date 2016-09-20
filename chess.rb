@@ -19,7 +19,11 @@ class Game
   end
 
   def play_turn
-    start_pos, end_pos = @current_player.get_move
+    move = nil
+    until move.is_a?(Array)
+      move = @current_player.get_move
+    end
+    start_pos, end_pos = move
     @board.move(start_pos, end_pos)
     @board.convert_pawn
   end
@@ -28,6 +32,7 @@ class Game
     until @board.checkmate?(@current_player.color)
       play_turn
       swap_players
+      system "clear"
     end
     swap_players
     puts "#{@current_player.name} wins!"
@@ -62,9 +67,10 @@ class HumanPlayer
     move_pos = nil
     valid_moves = piece.moves(true)
     until move_pos && valid_moves.include?(move_pos)
-      move_pos = get_input("#{name}, select a spot to move to",pos)
+      move_pos = get_input("#{name}, select a spot to move to", pos)
+      p move_pos
+      return nil if move_pos == :cancel
     end
-
     [pos,move_pos]
   end
 end
@@ -106,6 +112,6 @@ class ComputerPlayer
   end
 end
 
-one = ComputerPlayer.new("one")
+one = HumanPlayer.new("one")
 two = ComputerPlayer.new("two")
 g = Game.new(one,two).play

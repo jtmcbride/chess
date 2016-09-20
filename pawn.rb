@@ -21,7 +21,7 @@ class Pawn < Piece
   end
 
   def to_s
-    "P"
+    super " #{@sym} "
   end
 
   def moves(moving)
@@ -30,9 +30,7 @@ class Pawn < Piece
     front = add_vector(@pos,[1,0])
     if @board[*front] == NullPiece.instance
       valid_moves << front if in_bounds?(front)
-      p "pawn moved? #{self.moved}"
       unless @moved
-        p "double"
         double = add_vector(@pos,[2,0])
         valid_moves << double if @board[*double] == NullPiece.instance
       end

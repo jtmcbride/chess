@@ -77,15 +77,17 @@ class Cursor
 
   def handle_key(key)
     if MOVES.include?(key)
+      system 'clear'
       update_pos(MOVES[key])
     elsif key == :return
       return @cursor_pos.dup
+    elsif key == :space
+      return :cancel
     else
       raise "ERROR"
     end
     nil
   end
-#TODO check inbounds
 
   def in_bounds?(pos)
     if pos < 0 || pos > 7
