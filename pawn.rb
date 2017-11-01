@@ -42,7 +42,6 @@ class Pawn < Piece
         valid_moves << current if enemy?(current)
       end
     end
-    # @moved = true if moving
 
     moving ? valid_moves.reject { |move| move_into_check?(move) } : valid_moves
   end

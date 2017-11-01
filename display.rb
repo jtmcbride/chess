@@ -27,6 +27,7 @@ class Display
       end
       puts row_string
     end
+    p
   end
 
 end
